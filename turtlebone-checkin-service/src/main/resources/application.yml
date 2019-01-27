@@ -83,4 +83,6 @@ server:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
 redis.expireTime: 60
-  
+---
+spring:
+  jpa.database-platform: org.hibernate.dialect.MySQLDialect
