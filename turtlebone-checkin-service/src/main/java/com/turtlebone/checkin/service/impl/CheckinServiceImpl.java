@@ -22,7 +22,7 @@ public class CheckinServiceImpl implements CheckinService {
 	private ActivityService activityService;
 	
 	@Override
-	public int checkin(GroupType groupType, String username) {
+	public int checkin(GroupType groupType, String username, String remark) {
 		if (StringUtils.isEmpty(username)) {
 			log.error("username不能为空");
 			return 0;
@@ -31,6 +31,7 @@ public class CheckinServiceImpl implements CheckinService {
 		activity.setDatetime(DateUtil.getDateTime("yyyy-MM-dd HH:mm:ss"));
 		activity.setType("CHECKIN");
 		activity.setResult1((long)groupType.getId());
+		activity.setStrresult1(remark);
 		activity.setUsername(username);
 		activity.setDescription(String.format("%s 打卡进行 %s", username, groupType.getDescription()));
 		return activityService.create(activity);

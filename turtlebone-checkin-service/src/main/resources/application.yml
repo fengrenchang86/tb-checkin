@@ -40,4 +40,47 @@ server:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
 redis.expireTime: 60
+---
+spring:
+  profiles: prod
+  datasource:
+    type: org.apache.commons.dbcp2.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://turtlebone.top:3306/turtle?allowMultiQueries=true
+    username: mysql
+    password: mysql
+    initialSize: 10
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    testWhileIdle: true
+    validationQuery: select 'x'
+  redis:
+    database: 0
+    hostName: 127.0.0.1
+    port: 6379
+    pool.max-idle: 8
+    pool.min-idle: 0
+    pool.max-active: 8
+    pool.max-wait: -1
+  velocity:
+    charset: UTF-8
+    properties.input.encoding: UTF-8
+    properties.output.encoding: UTF-8 
+    resourceLoaderPath: classpath:templates/
+    suffix: .vm
+  dubbo:
+    server: true
+    application.id: tb-checkin
+    application.name: tb-checkin
+    registry.address: zookeeper://127.0.0.1:2181
+    protocol.name: dubbo
+    protocol.port: 20881
+    scan: com.turtlebone.checkin.service
+server:
+  port: 10020
+  contextPath: /checkin/
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+redis.expireTime: 60
   

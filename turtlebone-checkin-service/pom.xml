@@ -14,23 +14,19 @@
 			<artifactId>turtlebone-checkin-service-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
-		<!-- Spring Boot Dubbo 依赖 -->
-		<!-- 
-		<dependency>
-			<groupId>io.dubbo.springboot</groupId>
-			<artifactId>spring-boot-starter-dubbo</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		 -->
-
-
-
-
 		<dependency>
 			<groupId>com.turtlebone</groupId>
 			<artifactId>turtlebone-main-service-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
