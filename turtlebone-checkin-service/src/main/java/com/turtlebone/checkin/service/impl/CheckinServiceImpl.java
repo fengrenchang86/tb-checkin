@@ -1,5 +1,7 @@
 package com.turtlebone.checkin.service.impl;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -22,13 +24,14 @@ public class CheckinServiceImpl implements CheckinService {
 	private ActivityService activityService;
 	
 	@Override
-	public int checkin(GroupType groupType, String username, String remark) {
+	public int checkin(GroupType groupType, String username, String remark, String datetime) {
 		if (StringUtils.isEmpty(username)) {
 			log.error("username不能为空");
 			return 0;
 		}
 		ActivityModel activity = new ActivityModel();
-		activity.setDatetime(DateUtil.getDateTime("yyyy-MM-dd HH:mm:ss"));
+		datetime = getDateTime(datetime);
+		activity.setDatetime(datetime);
 		activity.setType("CHECKIN");
 		activity.setResult1((long)groupType.getId());
 		activity.setStrresult1(remark);
@@ -37,4 +40,14 @@ public class CheckinServiceImpl implements CheckinService {
 		return activityService.create(activity);
 	}
 
+	private String getDateTime(String datetime) {
+		try {
+			Date date = DateUtil.parse(datetime);
+			return DateUtil.format(date, "yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return DateUtil.getDateTime("yyyy-MM-dd HH:mm:ss");
+	}
 }
