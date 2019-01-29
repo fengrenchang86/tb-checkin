@@ -1,7 +1,11 @@
 package com.turtlebone.checkin.repository;
 
 import com.turtlebone.checkin.entity.GroupConfig;
+import com.turtlebone.checkin.model.FavCheckinModel;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -27,4 +31,5 @@ public interface GroupConfigRepository{
 
     List<GroupConfig> selectPage(@Param("groupConfig") GroupConfig groupConfig, @Param("pageable") Pageable pageable);
 	
+    List<FavCheckinModel> queryFav(Map<String, Object> map);
 }

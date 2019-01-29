@@ -6,4 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>turtlebone-checkin-service-api</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.turtlebone</groupId>
+  		<artifactId>turtlebone-main-service-api</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
